@@ -1,10 +1,10 @@
 # bare-rpc-test
 
-Cross-language conformance vectors, normative spec and reference peer for bare-rpc
+Cross-language conformance vectors, normative spec and reference peer for bare-rpc.
 
-## Usage
-
-tbd
+```
+npm i bare-rpc-test
+```
 
 ## License
 

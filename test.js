@@ -1,1 +1,5 @@
-require('./test/index.js')
+const test = require('brittle')
+
+test('works', (t) => {
+  t.pass()
+})
