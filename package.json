@@ -1,6 +1,6 @@
 {
   "name": "bare-rpc-test",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Cross-language conformance vectors, normative spec and reference peer for bare-rpc",
   "exports": {
     ".": "./index.js",
