@@ -1,3 +1,5 @@
+const fs = require('fs')
+const path = require('path')
 const test = require('brittle')
 const c = require('compact-encoding')
 const { encodeFrame, toHex, decodeFrame, serializeDescriptor } = require('./lib/frame')
@@ -101,3 +103,12 @@ for (const { hex, descriptor, reason } of loadDecodeOnly()) {
     t.alike(serializeDescriptor(decodeFrame(Buffer.from(hex, 'hex'))), descriptor)
   })
 }
+
+test('WIRE.md names the bare-rpc the fixtures are generated from', function (t) {
+  const pinned = require('./package.json').devDependencies['bare-rpc']
+  t.ok(/^\d+\.\d+\.\d+$/.test(pinned), 'bare-rpc is pinned to one version')
+  t.is(require('bare-rpc/package').version, pinned, 'the installed bare-rpc is the pinned one')
+
+  const spec = fs.readFileSync(path.join(__dirname, 'WIRE.md'), 'utf8')
+  t.is(spec.match(/version (\d+\.\d+\.\d+)/)[1], pinned, 'WIRE.md names the pinned one')
+})
