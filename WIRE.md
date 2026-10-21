@@ -15,9 +15,9 @@ Every message is a single frame: a length prefix, then a body of that many bytes
 
 ## Fields
 
-Every field after the frame length is a `compact-encoding` value, and this document does not restate how those encode. They are specified by [compact-encoding-test's `CODECS.md`](https://github.com/holepunchto/compact-encoding-test/blob/main/CODECS.md) 0.2.0, including what a decoder does with an integer wider than its value needs, with a byte other than `00` or `01` where it reads a boolean, and with bytes that are not valid UTF-8.
+Every field after the frame length is a `compact-encoding` value, and this document does not restate how those encode. They are specified by [compact-encoding-test's `CODECS.md`](https://github.com/holepunchto/compact-encoding-test/blob/v0.2.0/CODECS.md) 0.2.0, including what a decoder does with an integer wider than its value needs, with a byte other than `00` or `01` where it reads a boolean, and with bytes that are not valid UTF-8.
 
-- `fields-compact-encoding` - after the frame length, every integer is a `uint`, `errno` is an `int`, `hasError` is a `bool`, every string is a `utf8`, and every payload is a `buffer` - a `uint` byte count followed by that many bytes - each as compact-encoding-test's `CODECS.md` defines it.
+- `fields-compact-encoding` - after the frame length, `errno` is an `int` and every other integer a `uint`, `hasError` is a `bool`, every string is a `utf8`, and every payload is a `buffer` - a `uint` byte count followed by that many bytes - each as compact-encoding-test's `CODECS.md` defines it.
 
 ## Message types
 
@@ -43,10 +43,10 @@ type: STREAM = 3
 
 ### STREAM (`type = 3`)
 
-`stream` is a set of flags, described in [Stream flags](#stream-flags). The flags, not the bytes left in the frame, decide whether a payload follows.
+`stream` is a set of flags, described in [Stream flags](#stream-flags). The flags, not the bytes left in the frame, decide whether a payload follows. No fixture covers `stream-error-excludes-data` yet.
 
 - `stream-fields` - a STREAM is `type, id, stream`, followed by the error struct when `ERROR` is set, by `dataLen, data` when `DATA` is set and `ERROR` is not, and by nothing otherwise.
-- `stream-error-before-data` - a STREAM with both `ERROR` and `DATA` set carries the error struct and no payload.
+- `stream-error-excludes-data` - a STREAM with both `ERROR` and `DATA` set carries the error struct and no payload.
 
 ## Stream flags
 
@@ -98,13 +98,13 @@ Whether a frame carries `dataLen, data` at all depends on `stream`, as described
 
 A decoder rejects two distinct classes of input, and in both it must signal the failure to its caller rather than skip the frame and carry on:
 
-- **Malformed** - the frame cannot be parsed at all: the length promises more bytes than follow (`frame-truncated-rejects`), or a field runs past the end of the body.
+- **Malformed** - the frame cannot be parsed at all: the length promises more bytes than follow (`frame-truncated-rejects`), or a field runs past the end of the body (`field-past-end-rejects`).
 - **Unrecognized** - the frame parses, but names something this format does not define. The only such case today is a `type` outside 1-3 (`message-unknown-type-rejects`).
-
-The second class is an error rather than something to ignore because the type space is closed: a peer sending a type this format does not define is either corrupt or not speaking this protocol, and continuing past it silently hides both. Adding a message type is a coordinated change across implementations, not something a decoder absorbs on its own. Returning "no message" and reading the next frame does not satisfy either class.
 
 - `field-past-end-rejects` - a decoder rejects a body whose fields run past its end.
 
+The second class is an error rather than something to ignore because the type space is closed: a peer sending a type this format does not define is either corrupt or not speaking this protocol, and continuing past it silently hides both. Adding a message type is a coordinated change across implementations, not something a decoder absorbs on its own. Returning "no message" and reading the next frame does not satisfy either class.
+
 ## Fixtures
 
-`fixtures/` is the machine-checkable form of every rule in this document: `envelope/` covers the three message types and payload/null semantics, `error/` covers the error struct and the null/undefined-code regression, `boundary/` covers varint tag-width thresholds, `negative/` covers both classes of input a decoder must reject, `decode-only/` covers frames a decoder must accept but that do not re-encode to the same bytes, and `sequence/` covers a multi-frame stream concatenated into one buffer. Each family's `frames.json` holds the canonical hex bytes (`decode-only/` holds accepted but non-canonical ones) and `messages.json` (or the family's own structure) holds the decoded message each frame corresponds to. An implementation is wire-conformant if it can decode every fixture frame into the described message and re-encode every described message into the exact fixture frame, except `decode-only/`, whose frames it need only decode.
+`fixtures/` is the machine-checkable form of every rule in this document: `envelope/` covers the three message types and payload/null semantics, `error/` covers the error struct, `boundary/` covers ids, commands and payload lengths at the widths where their `uint` grows, `negative/` covers both classes of input a decoder must reject, `decode-only/` covers frames a decoder must accept but that do not re-encode to the same bytes, and `sequence/` covers a multi-frame stream concatenated into one buffer. Each family's `frames.json` holds the canonical hex bytes (`decode-only/` holds accepted but non-canonical ones) and `messages.json` (or the family's own structure) holds the decoded message each frame corresponds to. An implementation is wire-conformant if it can decode every fixture frame into the described message and re-encode every described message into the exact fixture frame, except `decode-only/`, whose frames it need only decode.
