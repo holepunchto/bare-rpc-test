@@ -1,1 +1,3 @@
 fixtures/
+!fixtures/negative/
+!fixtures/decode-only/

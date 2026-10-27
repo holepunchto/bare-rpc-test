@@ -4,6 +4,10 @@ const { FAMILIES, answers, oldFiles } = require('./lib/answers')
 
 const fixtures = path.join(__dirname, 'fixtures')
 
+// The 0.1 negative and decode-only files are formatted by hand; the tests check
+// they agree with the cases.
+const HAND_WRITTEN = new Set(['negative', 'decode-only'])
+
 function read(file) {
   return JSON.parse(fs.readFileSync(file, 'utf8'))
 }
@@ -20,8 +24,10 @@ for (const family of FAMILIES) {
   const committed = answers(cases)
 
   write(path.join(dir, 'answers.json'), committed)
-  for (const [name, value] of Object.entries(oldFiles(family, cases, committed))) {
-    write(path.join(dir, name), value)
+  if (!HAND_WRITTEN.has(family)) {
+    for (const [name, value] of Object.entries(oldFiles(family, cases, committed))) {
+      write(path.join(dir, name), value)
+    }
   }
 
   index[family] = cases.map((c) => c.id)

@@ -3,7 +3,7 @@ const path = require('path')
 const test = require('brittle')
 const { decodeFrame, serializeDescriptor } = require('./lib/frame')
 const { FAMILIES, answers, oldFiles } = require('./lib/answers')
-const { index, loadCases, loadAnswers, families, loadFamily } = require('.')
+const { index, loadCases, loadAnswers, families: oldFamilies, loadFamily } = require('.')
 
 const spec = fs.readFileSync(path.join(__dirname, 'WIRE.md'), 'utf8')
 const rules = [...spec.matchAll(/^- `([a-z0-9][a-z0-9-]*)` - /gm)].map((m) => m[1])
@@ -43,7 +43,7 @@ test('every rule WIRE.md states is cited by a case', function (t) {
   for (const rule of rules) t.ok(cited.has(rule), rule)
 })
 
-test('the committed answers are what the pinned bare-rpc answers', function (t) {
+test('the committed answers regenerate from the cases', function (t) {
   for (const family of FAMILIES) {
     t.alike(answers(loadCases(family)), loadAnswers(family), family)
   }
@@ -61,7 +61,7 @@ test('the 0.1 files are generated from the cases', function (t) {
 // The 0.1 contract: a port reads messages.json as the description of the
 // bytes in frames.json.
 test('messages.json describes frames.json', function (t) {
-  for (const family of families) {
+  for (const family of oldFamilies) {
     const { frames, messages } = loadFamily(family)
     t.is(frames.length, messages.length, family + ': one frame per message')
     for (let i = 0; i < frames.length; i++) {

@@ -75,7 +75,7 @@
         "id": 1,
         "stream": 0,
         "error": {
-          "message": "nafta \u00e9\u00e8",
+          "message": "nafta éè",
           "code": "C",
           "errno": 1
         },
@@ -85,7 +85,7 @@
   },
   {
     "id": "response-error-null-code",
-    "note": "response error with a null code encodes the empty string",
+    "note": "response error null code encodes empty (regression)",
     "rules": [
       "error-code-string"
     ],
@@ -105,7 +105,7 @@
   },
   {
     "id": "response-error-missing-code",
-    "note": "response error without a code encodes the empty string",
+    "note": "response error undefined code encodes empty (regression)",
     "rules": [
       "error-code-string"
     ],
