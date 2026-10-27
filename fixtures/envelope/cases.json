@@ -1,0 +1,397 @@
+[
+  {
+    "id": "request-payload",
+    "note": "request unary with payload",
+    "rules": [
+      "message-header",
+      "request-fields",
+      "payload-stream-zero"
+    ],
+    "input": {
+      "value": {
+        "type": 1,
+        "id": 1,
+        "command": 0,
+        "stream": 0,
+        "data": "6869"
+      }
+    }
+  },
+  {
+    "id": "request-no-payload",
+    "note": "request unary null payload",
+    "rules": [
+      "request-fields",
+      "payload-stream-zero"
+    ],
+    "input": {
+      "value": {
+        "type": 1,
+        "id": 1,
+        "command": 0,
+        "stream": 0,
+        "data": null
+      }
+    }
+  },
+  {
+    "id": "request-empty-payload",
+    "note": "request unary zero-length buffer (decodes to empty buffer, not null)",
+    "rules": [
+      "payload-stream-zero"
+    ],
+    "input": {
+      "value": {
+        "type": 1,
+        "id": 1,
+        "command": 0,
+        "stream": 0,
+        "data": ""
+      }
+    }
+  },
+  {
+    "id": "event-payload",
+    "note": "event (id 0) with payload",
+    "rules": [
+      "event-id-zero",
+      "request-fields"
+    ],
+    "input": {
+      "value": {
+        "type": 1,
+        "id": 0,
+        "command": 3,
+        "stream": 0,
+        "data": "6869"
+      }
+    }
+  },
+  {
+    "id": "event-no-payload",
+    "note": "event (id 0) null payload",
+    "rules": [
+      "event-id-zero",
+      "payload-stream-zero"
+    ],
+    "input": {
+      "value": {
+        "type": 1,
+        "id": 0,
+        "command": 3,
+        "stream": 0,
+        "data": null
+      }
+    }
+  },
+  {
+    "id": "request-stream-open",
+    "note": "request stream-open (stream=0x1, no dataLen field)",
+    "rules": [
+      "stream-open-initiator",
+      "request-fields",
+      "payload-control-none"
+    ],
+    "input": {
+      "value": {
+        "type": 1,
+        "id": 2,
+        "command": 1,
+        "stream": 1,
+        "data": null
+      }
+    }
+  },
+  {
+    "id": "response-payload",
+    "note": "response success with payload",
+    "rules": [
+      "response-fields",
+      "payload-stream-zero"
+    ],
+    "input": {
+      "value": {
+        "type": 2,
+        "id": 1,
+        "stream": 0,
+        "error": null,
+        "data": "6869"
+      }
+    }
+  },
+  {
+    "id": "response-no-payload",
+    "note": "response success null payload",
+    "rules": [
+      "response-fields",
+      "payload-stream-zero"
+    ],
+    "input": {
+      "value": {
+        "type": 2,
+        "id": 1,
+        "stream": 0,
+        "error": null,
+        "data": null
+      }
+    }
+  },
+  {
+    "id": "response-stream-open",
+    "note": "response stream-open (stream=0x1)",
+    "rules": [
+      "stream-open-initiator",
+      "response-fields",
+      "payload-control-none"
+    ],
+    "input": {
+      "value": {
+        "type": 2,
+        "id": 2,
+        "stream": 1,
+        "error": null,
+        "data": null
+      }
+    }
+  },
+  {
+    "id": "stream-request-data",
+    "note": "stream request data",
+    "rules": [
+      "stream-fields",
+      "stream-flag-bits",
+      "stream-direction"
+    ],
+    "input": {
+      "value": {
+        "type": 3,
+        "id": 2,
+        "stream": 272,
+        "error": null,
+        "data": "6869"
+      }
+    }
+  },
+  {
+    "id": "stream-response-data",
+    "note": "stream response data",
+    "rules": [
+      "stream-fields",
+      "stream-flag-bits",
+      "stream-direction"
+    ],
+    "input": {
+      "value": {
+        "type": 3,
+        "id": 2,
+        "stream": 528,
+        "error": null,
+        "data": "6869"
+      }
+    }
+  },
+  {
+    "id": "stream-request-open",
+    "note": "stream request open",
+    "rules": [
+      "stream-open-receiver",
+      "payload-control-none"
+    ],
+    "input": {
+      "value": {
+        "type": 3,
+        "id": 2,
+        "stream": 257,
+        "error": null,
+        "data": null
+      }
+    }
+  },
+  {
+    "id": "stream-response-open",
+    "note": "stream response open",
+    "rules": [
+      "stream-open-receiver",
+      "payload-control-none"
+    ],
+    "input": {
+      "value": {
+        "type": 3,
+        "id": 2,
+        "stream": 513,
+        "error": null,
+        "data": null
+      }
+    }
+  },
+  {
+    "id": "stream-request-end",
+    "note": "stream request end",
+    "rules": [
+      "stream-direction",
+      "payload-control-none"
+    ],
+    "input": {
+      "value": {
+        "type": 3,
+        "id": 2,
+        "stream": 288,
+        "error": null,
+        "data": null
+      }
+    }
+  },
+  {
+    "id": "stream-response-end",
+    "note": "stream response end",
+    "rules": [
+      "stream-direction",
+      "payload-control-none"
+    ],
+    "input": {
+      "value": {
+        "type": 3,
+        "id": 2,
+        "stream": 544,
+        "error": null,
+        "data": null
+      }
+    }
+  },
+  {
+    "id": "stream-request-close",
+    "note": "stream request close",
+    "rules": [
+      "stream-direction",
+      "payload-control-none"
+    ],
+    "input": {
+      "value": {
+        "type": 3,
+        "id": 2,
+        "stream": 258,
+        "error": null,
+        "data": null
+      }
+    }
+  },
+  {
+    "id": "stream-request-pause",
+    "note": "stream request pause",
+    "rules": [
+      "stream-direction",
+      "payload-control-none"
+    ],
+    "input": {
+      "value": {
+        "type": 3,
+        "id": 2,
+        "stream": 260,
+        "error": null,
+        "data": null
+      }
+    }
+  },
+  {
+    "id": "stream-request-resume",
+    "note": "stream request resume",
+    "rules": [
+      "stream-direction",
+      "payload-control-none"
+    ],
+    "input": {
+      "value": {
+        "type": 3,
+        "id": 2,
+        "stream": 264,
+        "error": null,
+        "data": null
+      }
+    }
+  },
+  {
+    "id": "stream-request-destroy",
+    "note": "stream request destroy",
+    "rules": [
+      "stream-direction",
+      "payload-control-none"
+    ],
+    "input": {
+      "value": {
+        "type": 3,
+        "id": 2,
+        "stream": 320,
+        "error": null,
+        "data": null
+      }
+    }
+  },
+  {
+    "id": "stream-response-close",
+    "note": "stream response close",
+    "rules": [
+      "stream-direction",
+      "payload-control-none"
+    ],
+    "input": {
+      "value": {
+        "type": 3,
+        "id": 2,
+        "stream": 514,
+        "error": null,
+        "data": null
+      }
+    }
+  },
+  {
+    "id": "stream-response-pause",
+    "note": "stream response pause",
+    "rules": [
+      "stream-direction",
+      "payload-control-none"
+    ],
+    "input": {
+      "value": {
+        "type": 3,
+        "id": 2,
+        "stream": 516,
+        "error": null,
+        "data": null
+      }
+    }
+  },
+  {
+    "id": "stream-response-resume",
+    "note": "stream response resume",
+    "rules": [
+      "stream-direction",
+      "payload-control-none"
+    ],
+    "input": {
+      "value": {
+        "type": 3,
+        "id": 2,
+        "stream": 520,
+        "error": null,
+        "data": null
+      }
+    }
+  },
+  {
+    "id": "stream-response-destroy",
+    "note": "stream response destroy",
+    "rules": [
+      "stream-direction",
+      "payload-control-none"
+    ],
+    "input": {
+      "value": {
+        "type": 3,
+        "id": 2,
+        "stream": 576,
+        "error": null,
+        "data": null
+      }
+    }
+  }
+]

@@ -1,0 +1,232 @@
+{
+  "request-payload": {
+    "hex": "0700000001010000026869",
+    "decodes": {
+      "type": 1,
+      "id": 1,
+      "command": 0,
+      "stream": 0,
+      "data": "6869"
+    }
+  },
+  "request-no-payload": {
+    "hex": "050000000101000000",
+    "decodes": {
+      "type": 1,
+      "id": 1,
+      "command": 0,
+      "stream": 0,
+      "data": ""
+    }
+  },
+  "request-empty-payload": {
+    "hex": "050000000101000000",
+    "decodes": {
+      "type": 1,
+      "id": 1,
+      "command": 0,
+      "stream": 0,
+      "data": ""
+    }
+  },
+  "event-payload": {
+    "hex": "0700000001000300026869",
+    "decodes": {
+      "type": 1,
+      "id": 0,
+      "command": 3,
+      "stream": 0,
+      "data": "6869"
+    }
+  },
+  "event-no-payload": {
+    "hex": "050000000100030000",
+    "decodes": {
+      "type": 1,
+      "id": 0,
+      "command": 3,
+      "stream": 0,
+      "data": ""
+    }
+  },
+  "request-stream-open": {
+    "hex": "0400000001020101",
+    "decodes": {
+      "type": 1,
+      "id": 2,
+      "command": 1,
+      "stream": 1,
+      "data": null
+    }
+  },
+  "response-payload": {
+    "hex": "0700000002010000026869",
+    "decodes": {
+      "type": 2,
+      "id": 1,
+      "stream": 0,
+      "error": null,
+      "data": "6869"
+    }
+  },
+  "response-no-payload": {
+    "hex": "050000000201000000",
+    "decodes": {
+      "type": 2,
+      "id": 1,
+      "stream": 0,
+      "error": null,
+      "data": ""
+    }
+  },
+  "response-stream-open": {
+    "hex": "0400000002020001",
+    "decodes": {
+      "type": 2,
+      "id": 2,
+      "stream": 1,
+      "error": null,
+      "data": null
+    }
+  },
+  "stream-request-data": {
+    "hex": "080000000302fd1001026869",
+    "decodes": {
+      "type": 3,
+      "id": 2,
+      "stream": 272,
+      "error": null,
+      "data": "6869"
+    }
+  },
+  "stream-response-data": {
+    "hex": "080000000302fd1002026869",
+    "decodes": {
+      "type": 3,
+      "id": 2,
+      "stream": 528,
+      "error": null,
+      "data": "6869"
+    }
+  },
+  "stream-request-open": {
+    "hex": "050000000302fd0101",
+    "decodes": {
+      "type": 3,
+      "id": 2,
+      "stream": 257,
+      "error": null,
+      "data": null
+    }
+  },
+  "stream-response-open": {
+    "hex": "050000000302fd0102",
+    "decodes": {
+      "type": 3,
+      "id": 2,
+      "stream": 513,
+      "error": null,
+      "data": null
+    }
+  },
+  "stream-request-end": {
+    "hex": "050000000302fd2001",
+    "decodes": {
+      "type": 3,
+      "id": 2,
+      "stream": 288,
+      "error": null,
+      "data": null
+    }
+  },
+  "stream-response-end": {
+    "hex": "050000000302fd2002",
+    "decodes": {
+      "type": 3,
+      "id": 2,
+      "stream": 544,
+      "error": null,
+      "data": null
+    }
+  },
+  "stream-request-close": {
+    "hex": "050000000302fd0201",
+    "decodes": {
+      "type": 3,
+      "id": 2,
+      "stream": 258,
+      "error": null,
+      "data": null
+    }
+  },
+  "stream-request-pause": {
+    "hex": "050000000302fd0401",
+    "decodes": {
+      "type": 3,
+      "id": 2,
+      "stream": 260,
+      "error": null,
+      "data": null
+    }
+  },
+  "stream-request-resume": {
+    "hex": "050000000302fd0801",
+    "decodes": {
+      "type": 3,
+      "id": 2,
+      "stream": 264,
+      "error": null,
+      "data": null
+    }
+  },
+  "stream-request-destroy": {
+    "hex": "050000000302fd4001",
+    "decodes": {
+      "type": 3,
+      "id": 2,
+      "stream": 320,
+      "error": null,
+      "data": null
+    }
+  },
+  "stream-response-close": {
+    "hex": "050000000302fd0202",
+    "decodes": {
+      "type": 3,
+      "id": 2,
+      "stream": 514,
+      "error": null,
+      "data": null
+    }
+  },
+  "stream-response-pause": {
+    "hex": "050000000302fd0402",
+    "decodes": {
+      "type": 3,
+      "id": 2,
+      "stream": 516,
+      "error": null,
+      "data": null
+    }
+  },
+  "stream-response-resume": {
+    "hex": "050000000302fd0802",
+    "decodes": {
+      "type": 3,
+      "id": 2,
+      "stream": 520,
+      "error": null,
+      "data": null
+    }
+  },
+  "stream-response-destroy": {
+    "hex": "050000000302fd4002",
+    "decodes": {
+      "type": 3,
+      "id": 2,
+      "stream": 576,
+      "error": null,
+      "data": null
+    }
+  }
+}

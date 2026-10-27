@@ -1,0 +1,233 @@
+[
+  {
+    "id": "response-error",
+    "note": "response error basic",
+    "rules": [
+      "response-fields",
+      "error-struct"
+    ],
+    "input": {
+      "value": {
+        "type": 2,
+        "id": 1,
+        "stream": 0,
+        "error": {
+          "message": "boom",
+          "code": "BAD",
+          "errno": 400
+        },
+        "data": null
+      }
+    }
+  },
+  {
+    "id": "response-error-empty-strings",
+    "note": "response error empty message and code",
+    "rules": [
+      "error-struct",
+      "fields-compact-encoding"
+    ],
+    "input": {
+      "value": {
+        "type": 2,
+        "id": 1,
+        "stream": 0,
+        "error": {
+          "message": "",
+          "code": "",
+          "errno": 0
+        },
+        "data": null
+      }
+    }
+  },
+  {
+    "id": "response-error-negative-errno",
+    "note": "response error negative errno",
+    "rules": [
+      "error-struct",
+      "fields-compact-encoding"
+    ],
+    "input": {
+      "value": {
+        "type": 2,
+        "id": 1,
+        "stream": 0,
+        "error": {
+          "message": "x",
+          "code": "C",
+          "errno": -400
+        },
+        "data": null
+      }
+    }
+  },
+  {
+    "id": "response-error-utf8-message",
+    "note": "response error unicode message",
+    "rules": [
+      "error-struct",
+      "fields-compact-encoding"
+    ],
+    "input": {
+      "value": {
+        "type": 2,
+        "id": 1,
+        "stream": 0,
+        "error": {
+          "message": "nafta \u00e9\u00e8",
+          "code": "C",
+          "errno": 1
+        },
+        "data": null
+      }
+    }
+  },
+  {
+    "id": "response-error-null-code",
+    "note": "response error with a null code encodes the empty string",
+    "rules": [
+      "error-code-string"
+    ],
+    "input": {
+      "value": {
+        "type": 2,
+        "id": 1,
+        "stream": 0,
+        "error": {
+          "message": "m",
+          "code": null,
+          "errno": 1
+        },
+        "data": null
+      }
+    }
+  },
+  {
+    "id": "response-error-missing-code",
+    "note": "response error without a code encodes the empty string",
+    "rules": [
+      "error-code-string"
+    ],
+    "input": {
+      "value": {
+        "type": 2,
+        "id": 1,
+        "stream": 0,
+        "error": {
+          "message": "m",
+          "errno": 1
+        },
+        "data": null
+      }
+    }
+  },
+  {
+    "id": "stream-request-close-error",
+    "note": "stream request close+error",
+    "rules": [
+      "stream-fields",
+      "error-struct",
+      "stream-direction"
+    ],
+    "input": {
+      "value": {
+        "type": 3,
+        "id": 2,
+        "stream": 386,
+        "error": {
+          "message": "gone",
+          "code": "E",
+          "errno": 1
+        },
+        "data": null
+      }
+    }
+  },
+  {
+    "id": "stream-response-destroy-error",
+    "note": "stream response destroy+error",
+    "rules": [
+      "stream-fields",
+      "error-struct",
+      "stream-direction"
+    ],
+    "input": {
+      "value": {
+        "type": 3,
+        "id": 2,
+        "stream": 704,
+        "error": {
+          "message": "gone",
+          "code": "E",
+          "errno": 2
+        },
+        "data": null
+      }
+    }
+  },
+  {
+    "id": "stream-response-close-error",
+    "note": "stream response close+error",
+    "rules": [
+      "stream-fields",
+      "error-struct",
+      "stream-direction"
+    ],
+    "input": {
+      "value": {
+        "type": 3,
+        "id": 2,
+        "stream": 642,
+        "error": {
+          "message": "gone",
+          "code": "E",
+          "errno": 3
+        },
+        "data": null
+      }
+    }
+  },
+  {
+    "id": "stream-request-destroy-error",
+    "note": "stream request destroy+error",
+    "rules": [
+      "stream-fields",
+      "error-struct",
+      "stream-direction"
+    ],
+    "input": {
+      "value": {
+        "type": 3,
+        "id": 2,
+        "stream": 448,
+        "error": {
+          "message": "gone",
+          "code": "E",
+          "errno": 4
+        },
+        "data": null
+      }
+    }
+  },
+  {
+    "id": "stream-error-and-data-flags",
+    "note": "stream frame with both the error and data flags carries the error and no payload",
+    "rules": [
+      "stream-error-excludes-data"
+    ],
+    "input": {
+      "value": {
+        "type": 3,
+        "id": 2,
+        "stream": 402,
+        "error": {
+          "message": "gone",
+          "code": "E",
+          "errno": 1
+        },
+        "data": "01"
+      }
+    }
+  }
+]

@@ -1,17 +1,35 @@
 [
   {
     "hex": "060000000302fd200100",
-    "descriptor": { "type": 3, "id": 2, "stream": 288, "error": null, "data": null },
+    "descriptor": {
+      "type": 3,
+      "id": 2,
+      "stream": 288,
+      "error": null,
+      "data": null
+    },
     "reason": "stream frame without DATA ignores leftover body bytes"
   },
   {
     "hex": "06000000010107000000",
-    "descriptor": { "type": 1, "id": 1, "command": 7, "stream": 0, "data": "" },
+    "descriptor": {
+      "type": 1,
+      "id": 1,
+      "command": 7,
+      "stream": 0,
+      "data": ""
+    },
     "reason": "request ignores leftover body bytes after the payload"
   },
   {
     "hex": "050000000202000100",
-    "descriptor": { "type": 2, "id": 2, "stream": 1, "error": null, "data": null },
+    "descriptor": {
+      "type": 2,
+      "id": 2,
+      "stream": 1,
+      "error": null,
+      "data": null
+    },
     "reason": "response stream-open ignores leftover body bytes"
   }
 ]

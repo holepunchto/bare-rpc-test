@@ -1,0 +1,42 @@
+[
+  {
+    "id": "stream-response-open-data-data-end",
+    "note": "one response stream: open, two data frames, end",
+    "rules": [
+      "frames-concatenate",
+      "frame-length-prefix"
+    ],
+    "input": {
+      "value": [
+        {
+          "type": 3,
+          "id": 5,
+          "stream": 513,
+          "error": null,
+          "data": null
+        },
+        {
+          "type": 3,
+          "id": 5,
+          "stream": 528,
+          "error": null,
+          "data": "61"
+        },
+        {
+          "type": 3,
+          "id": 5,
+          "stream": 528,
+          "error": null,
+          "data": "62"
+        },
+        {
+          "type": 3,
+          "id": 5,
+          "stream": 544,
+          "error": null,
+          "data": null
+        }
+      ]
+    }
+  }
+]

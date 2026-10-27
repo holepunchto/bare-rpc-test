@@ -43,7 +43,7 @@ type: STREAM = 3
 
 ### STREAM (`type = 3`)
 
-`stream` is a set of flags, described in [Stream flags](#stream-flags). The flags, not the bytes left in the frame, decide whether a payload follows. No fixture covers `stream-error-excludes-data` yet.
+`stream` is a set of flags, described in [Stream flags](#stream-flags). The flags, not the bytes left in the frame, decide whether a payload follows.
 
 - `stream-fields` - a STREAM is `type, id, stream`, followed by the error struct when `ERROR` is set, by `dataLen, data` when `DATA` is set and `ERROR` is not, and by nothing otherwise.
 - `stream-error-excludes-data` - a STREAM with both `ERROR` and `DATA` set carries the error struct and no payload.

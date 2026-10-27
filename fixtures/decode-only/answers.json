@@ -1,0 +1,29 @@
+{
+  "stream-control-leftover-bytes": {
+    "decodes": {
+      "type": 3,
+      "id": 2,
+      "stream": 288,
+      "error": null,
+      "data": null
+    }
+  },
+  "request-leftover-bytes": {
+    "decodes": {
+      "type": 1,
+      "id": 1,
+      "command": 7,
+      "stream": 0,
+      "data": ""
+    }
+  },
+  "response-stream-open-leftover-bytes": {
+    "decodes": {
+      "type": 2,
+      "id": 2,
+      "stream": 1,
+      "error": null,
+      "data": null
+    }
+  }
+}

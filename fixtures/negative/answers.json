@@ -1,0 +1,20 @@
+{
+  "frame-truncated": {
+    "rejects": true
+  },
+  "type-99": {
+    "rejects": true
+  },
+  "request-missing-command": {
+    "rejects": true
+  },
+  "response-missing-error-flag": {
+    "rejects": true
+  },
+  "response-error-missing-message": {
+    "rejects": true
+  },
+  "stream-missing-flags": {
+    "rejects": true
+  }
+}

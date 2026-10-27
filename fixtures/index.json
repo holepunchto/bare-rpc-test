@@ -1,0 +1,65 @@
+{
+  "envelope": [
+    "request-payload",
+    "request-no-payload",
+    "request-empty-payload",
+    "event-payload",
+    "event-no-payload",
+    "request-stream-open",
+    "response-payload",
+    "response-no-payload",
+    "response-stream-open",
+    "stream-request-data",
+    "stream-response-data",
+    "stream-request-open",
+    "stream-response-open",
+    "stream-request-end",
+    "stream-response-end",
+    "stream-request-close",
+    "stream-request-pause",
+    "stream-request-resume",
+    "stream-request-destroy",
+    "stream-response-close",
+    "stream-response-pause",
+    "stream-response-resume",
+    "stream-response-destroy"
+  ],
+  "error": [
+    "response-error",
+    "response-error-empty-strings",
+    "response-error-negative-errno",
+    "response-error-utf8-message",
+    "response-error-null-code",
+    "response-error-missing-code",
+    "stream-request-close-error",
+    "stream-response-destroy-error",
+    "stream-response-close-error",
+    "stream-request-destroy-error",
+    "stream-error-and-data-flags"
+  ],
+  "boundary": [
+    "id-252",
+    "id-253",
+    "id-65536",
+    "id-4294967296",
+    "command-253",
+    "payload-252-bytes",
+    "payload-253-bytes"
+  ],
+  "negative": [
+    "frame-truncated",
+    "type-99",
+    "request-missing-command",
+    "response-missing-error-flag",
+    "response-error-missing-message",
+    "stream-missing-flags"
+  ],
+  "decode-only": [
+    "stream-control-leftover-bytes",
+    "request-leftover-bytes",
+    "response-stream-open-leftover-bytes"
+  ],
+  "sequence": [
+    "stream-response-open-data-data-end"
+  ]
+}

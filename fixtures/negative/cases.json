@@ -1,0 +1,63 @@
+[
+  {
+    "id": "frame-truncated",
+    "note": "frame length 4 but no body bytes follow (truncated)",
+    "rules": [
+      "frame-truncated-rejects",
+      "frame-length-prefix"
+    ],
+    "input": {
+      "bytes": "04000000"
+    }
+  },
+  {
+    "id": "type-99",
+    "note": "unknown message type 99",
+    "rules": [
+      "message-unknown-type-rejects"
+    ],
+    "input": {
+      "bytes": "020000006300"
+    }
+  },
+  {
+    "id": "request-missing-command",
+    "note": "request body ends after id: command runs past the end of the body",
+    "rules": [
+      "field-past-end-rejects"
+    ],
+    "input": {
+      "bytes": "020000000107"
+    }
+  },
+  {
+    "id": "response-missing-error-flag",
+    "note": "response body ends after id: the error flag runs past the end of the body",
+    "rules": [
+      "field-past-end-rejects"
+    ],
+    "input": {
+      "bytes": "020000000201"
+    }
+  },
+  {
+    "id": "response-error-missing-message",
+    "note": "error response body ends after the error flag: the message runs past the end of the body",
+    "rules": [
+      "field-past-end-rejects"
+    ],
+    "input": {
+      "bytes": "03000000020101"
+    }
+  },
+  {
+    "id": "stream-missing-flags",
+    "note": "stream body ends after the id: the flags run past the end of the body",
+    "rules": [
+      "field-past-end-rejects"
+    ],
+    "input": {
+      "bytes": "02000000030a"
+    }
+  }
+]
