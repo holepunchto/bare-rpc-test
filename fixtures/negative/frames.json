@@ -21,6 +21,6 @@
   },
   {
     "hex": "02000000030a",
-    "reason": "stream body ends after the flags: the payload runs past the end of the body"
+    "reason": "stream body ends after the id: the flags run past the end of the body"
   }
 ]
