@@ -1,6 +1,6 @@
 # Wire format
 
-This document is the normative definition of the bare-rpc wire protocol. It is checked against the reference implementation in `bare-rpc` (`lib/messages.js` and `lib/constants.js`, version 1.3.8), not against any other documentation, and every rule below has a corresponding machine-checkable vector under `fixtures/`. Where this document and `fixtures/` disagree, `fixtures/` wins; file an issue and fix the prose.
+This document is the normative definition of the bare-rpc wire protocol. It is checked against the reference implementation in `bare-rpc` (`lib/messages.js` and `lib/constants.js`, version 1.3.8), not against any other documentation, and every rule below has a corresponding machine-checkable vector under `fixtures/`. Where this document and `fixtures/` disagree, `fixtures/` wins; file an issue and fix the prose. One fixture departs from that version: for a STREAM with both `ERROR` and `DATA` set, `bare-rpc` writes the payload past the frame (holepunchto/bare-rpc#43), and `stream-error-and-data-flags` follows `stream-error-excludes-data` instead.
 
 Each rule carries a stable slug, written as a list item: ``- `slug` - the rule.`` A slug does not change when the prose around it moves or is reworded.
 
@@ -43,7 +43,7 @@ type: STREAM = 3
 
 ### STREAM (`type = 3`)
 
-`stream` is a set of flags, described in [Stream flags](#stream-flags). The flags, not the bytes left in the frame, decide whether a payload follows. No fixture covers `stream-error-excludes-data` yet.
+`stream` is a set of flags, described in [Stream flags](#stream-flags). The flags, not the bytes left in the frame, decide whether a payload follows.
 
 - `stream-fields` - a STREAM is `type, id, stream`, followed by the error struct when `ERROR` is set, by `dataLen, data` when `DATA` is set and `ERROR` is not, and by nothing otherwise.
 - `stream-error-excludes-data` - a STREAM with both `ERROR` and `DATA` set carries the error struct and no payload.

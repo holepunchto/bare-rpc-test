@@ -1,0 +1,33 @@
+[
+  {
+    "id": "stream-control-leftover-bytes",
+    "note": "stream frame without DATA ignores leftover body bytes",
+    "rules": [
+      "frame-leftover-ignored",
+      "payload-control-none"
+    ],
+    "input": {
+      "bytes": "060000000302fd200100"
+    }
+  },
+  {
+    "id": "request-leftover-bytes",
+    "note": "request ignores leftover body bytes after the payload",
+    "rules": [
+      "frame-leftover-ignored"
+    ],
+    "input": {
+      "bytes": "06000000010107000000"
+    }
+  },
+  {
+    "id": "response-stream-open-leftover-bytes",
+    "note": "response stream-open ignores leftover body bytes",
+    "rules": [
+      "frame-leftover-ignored"
+    ],
+    "input": {
+      "bytes": "050000000202000100"
+    }
+  }
+]

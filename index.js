@@ -7,6 +7,16 @@ function readJSON(file) {
 
 const FAMILIES = readJSON(path.join(__dirname, 'fixtures', 'families.json'))
 
+const INDEX = readJSON(path.join(__dirname, 'fixtures', 'index.json'))
+
+function loadCases(name) {
+  return readJSON(path.join(__dirname, 'fixtures', name, 'cases.json'))
+}
+
+function loadAnswers(name) {
+  return readJSON(path.join(__dirname, 'fixtures', name, 'answers.json'))
+}
+
 // Families with {messages.json, frames.json} (index-aligned).
 function loadFamily(name) {
   const dir = path.join(__dirname, 'fixtures', name)
@@ -33,6 +43,9 @@ function loadSequence() {
 }
 
 module.exports = {
+  index: INDEX,
+  loadCases,
+  loadAnswers,
   families: FAMILIES,
   fixturesDir: path.join(__dirname, 'fixtures'),
   loadFamily,

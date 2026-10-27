@@ -1,0 +1,35 @@
+{
+  "stream-response-open-data-data-end": {
+    "hex": "050000000305fd0102070000000305fd10020161070000000305fd10020162050000000305fd2002",
+    "decodes": [
+      {
+        "type": 3,
+        "id": 5,
+        "stream": 513,
+        "error": null,
+        "data": null
+      },
+      {
+        "type": 3,
+        "id": 5,
+        "stream": 528,
+        "error": null,
+        "data": "61"
+      },
+      {
+        "type": 3,
+        "id": 5,
+        "stream": 528,
+        "error": null,
+        "data": "62"
+      },
+      {
+        "type": 3,
+        "id": 5,
+        "stream": 544,
+        "error": null,
+        "data": null
+      }
+    ]
+  }
+}
