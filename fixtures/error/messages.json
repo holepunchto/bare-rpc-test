@@ -56,7 +56,7 @@
     }
   },
   {
-    "note": "response error null code encodes empty (regression)",
+    "note": "response error with a null code encodes the empty string",
     "descriptor": {
       "type": 2,
       "id": 1,
@@ -70,7 +70,7 @@
     }
   },
   {
-    "note": "response error undefined code encodes empty (regression)",
+    "note": "response error without a code encodes the empty string",
     "descriptor": {
       "type": 2,
       "id": 1,

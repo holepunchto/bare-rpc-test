@@ -52,7 +52,7 @@
   },
   {
     "id": "stream-missing-flags",
-    "note": "stream body ends after the flags: the payload runs past the end of the body",
+    "note": "stream body ends after the id: the flags run past the end of the body",
     "rules": [
       "field-past-end-rejects"
     ],
